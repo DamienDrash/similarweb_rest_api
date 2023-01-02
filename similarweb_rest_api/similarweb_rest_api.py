@@ -321,25 +321,6 @@ class SimilarwebApi:
         with open(file_path, 'r') as f:
             self.json_list = json.load(f)
 
-    def description(self, func_name: str) -> str:
-        """
-        Returns the description of the specified function.
-
-        Parameters
-        ----------
-        func_name : str
-            The name of the function to get the description of.
-
-        Returns
-        -------
-        str
-            The description of the specified function.
-        """
-        # Get the function object
-        func = getattr(self, func_name)
-
-        # Return the docstring of the function
-        return func.__doc__
 
     def find_json(self, json_list, name):
         """
@@ -367,6 +348,31 @@ class SimilarwebApi:
                 return obj
             return None
 
+    def list_endpoints(self):
+        print('These are all endpoints that are included in the module:')
+        for endpoint in self.json_list:
+            print(f"- {endpoint['name']}")
+
+    def description(self, func_name: str) -> str:
+        """
+        Returns the description of the specified function.
+
+        Parameters
+        ----------
+        func_name : str
+            The name of the function to get the description of.
+
+        Returns
+        -------
+        str
+            The description of the specified function.
+        """
+        # Get the function object
+        func = getattr(self, func_name)
+
+        # Return the docstring of the function
+        return func.__doc__
+
     def description_endpoint(self, endpoint: str) -> str:
         """
         Returns the description of the specified endpoint.
@@ -388,6 +394,30 @@ class SimilarwebApi:
 
         # Return the description of the function
         return json_obj['description']
+
+    def list_parameter(self, endpoint: str) -> str:
+        json_obj = self.find_json(json_list=self.json_list, name=endpoint)
+        if not json_obj:
+            return None
+
+        # Find the key that holds the results
+        result_key = []
+        for key, value in json_obj.items():
+            if isinstance(value, list):
+                result_key.append(key)
+
+        # Extract the results from the dictionary
+        if result_key:
+            for key in result_key:
+                print('_______________________')
+                print(f"{key.upper()} :\n")
+                for param in json_obj[key]:
+                    print('|')
+                    for key in param.keys():
+                        print(f"|__ {key.upper()}: {param[key]}")
+                print('\n')
+        else:
+            return None
 
     def get(self, name, **kwargs):
         """
