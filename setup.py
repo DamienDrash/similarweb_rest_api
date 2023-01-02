@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='similarweb_rest_api',
-    version='1.5',
+    version='0.1.0',
     description='A library to simplify the access to the REST API of similarweb.',
     author='Damien Frigewski',
     author_email='dfrigewski@gmail.com',

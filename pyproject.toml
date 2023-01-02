@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "pandas", "requests", "lxml", "pyyaml"]
 build-backend = "setuptools.build_meta"
 [project]
 name = "similarweb_rest_api"
-version = "0.0.5"
+version = "0.1.0"
 authors = [
   { name="Damien Frigewski", email="dfrigewski@gmail.com" },
 ]

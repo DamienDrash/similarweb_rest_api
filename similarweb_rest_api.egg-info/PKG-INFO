@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: similarweb-rest-api
-Version: 0.0.5
+Version: 0.1.0
 Summary: A library to simplify the access to the REST API of similarweb.
 Home-page: https://github.com/DamienDrash/similarweb_rest_api
 Author: Damien Frigewski
