@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import typing
 import requests
@@ -315,7 +316,9 @@ class SimilarwebApi:
     def __init__(self, api_key=None):
         self.api_key = api_key
         self.data = None
-        with open('similarweb_endpoints.json', 'r') as f:
+        module_dir = os.path.dirname(__file__)
+        file_path = os.path.join(module_dir, 'similarweb_endpoints.json')
+        with open(file_path, 'r') as f:
             self.json_list = json.load(f)
 
     def description(self, func_name: str) -> str:
