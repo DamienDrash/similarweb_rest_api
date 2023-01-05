@@ -346,7 +346,7 @@ class SimilarwebApi:
         for obj in json_list:
             if obj['name'] == name:
                 return obj
-            return None
+        return None
 
     def list_endpoints(self):
         print('These are all endpoints that are included in the module:')
